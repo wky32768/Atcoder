@@ -21,6 +21,8 @@ int ksm(int x,int y) {
 	return ans;
 }
 signed main() {
+//	freopen("a.in","r",stdin);
+//	freopen("my.out","w",stdout);
 	cin>>t;
 	while(t--) {
 		cin>>n;
@@ -32,7 +34,8 @@ signed main() {
 			touch=1;
 		} else {
 			x=n/2-1, y=n/2+2;
-			ans=min(f(n/2), f(n/2+1));
+			if(f(n/2)<=f(n/2+1)) ans=f(n/2);
+			else if(f(n/2)>f(n/2+1)) ans=f(n/2)-1;
 			if(f(n/2)==f(n/2+1)) touch=1;
 		}
 		int lev=1;
