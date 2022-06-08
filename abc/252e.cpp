@@ -7,6 +7,7 @@
 #include <queue>
 #define For(i,a,b) for(int i=a;i<=b;i++)
 using namespace std;
+#define int long long
 const int N=400005;
 int n, m, cnt, x, y, z;
 int head[N], dis[N];
@@ -37,26 +38,34 @@ void dij() {
 	int tot=0; 
     while(!q.empty()) {
         cd now=q.top();
+        // cout<<"initial now="<<now.at<<endl;
         while(vis[now.at]==1) {
-            if(q.empty()) break;
-            q.pop(); now=q.top();
+            q.pop(); 
+            if(q.empty()) goto L1;
+            now=q.top();
+            // cout<<"coming now="<<now.at<<endl;
         }
-//        cout<<"now: "<<now.at<<'\n';
+        // cout<<"now: "<<now.at<<'\n';
         q.pop();
         vis[now.at]=1;
-        tot++;
-        if(now.useline) rest.push_back(now.useline);
-        if(tot==n) break;
+        // tot++;
+        if(now.dis==dis[now.at] && now.useline) {
+            rest.push_back(now.useline);
+            // cout<<"added: "<<now.useline<<'\n';
+        }
+        // if(tot==n) break;
         for(int i=head[now.at];i;i=sxd[i].next) {
             int to=sxd[i].to;
-//            cout<<"to="<<to<<'\n';
+            // cout<<"to="<<to<<'\n';
             if(dis[to]>dis[now.at]+sxd[i].w) {
                 dis[to]=dis[now.at]+sxd[i].w;
-//                cout<<"dis[to]="<<dis[to]<<'\n';
+                // cout<<"dis[to]="<<dis[to]<<'\n';
                 if(!vis[to]) q.push((cd) {to, dis[to], sxd[i].id});
             }
         }
+        // cout<<"haha\n\n";
     }
+    L1:;
 }
 signed main() {
     cin>>n>>m;
