@@ -29,9 +29,6 @@ signed main() {
         For(j,start+k,end) ans[++cnt]=j;
         For(j,start,start+k-1) ans[++cnt]=j;
     }
-    if(n%kk>=k) {
-        
-    }
 
     return 0;
 }
