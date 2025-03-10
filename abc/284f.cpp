@@ -27,9 +27,7 @@ signed main() {
     beh[n * 2 + 1] = 1;
     for(int i = n * 2; i >= 1; i--) 
         beh[i] = (beh[i + 1] * p % mod + ch[i] - 'a') % mod;
-    // For(i, 1, 3) cout << fro[i] << " " << beh[i] << '\n';
     For(i, 1, n) {
-        // cout << i << " " << (fro[i] - fro[0] * pw[i] + mod) % mod << " " << (beh[n + 1] - beh[i + n + 1] * pw[i] % mod + mod) % mod << '\n';
         if((fro[i] - fro[0] * pw[i] % mod + mod) % mod != (beh[n + 1] - beh[i + n + 1] * pw[i] % mod + mod) % mod) continue;
         if((fro[n * 2] - fro[i + n] * pw[n - i] % mod + mod) % mod != (beh[i + 1] - beh[n + 1] * pw[n - i] % mod + mod) % mod) continue;
         for(int j = n + i;j >= i + 1; j--) cout << ch[j];
